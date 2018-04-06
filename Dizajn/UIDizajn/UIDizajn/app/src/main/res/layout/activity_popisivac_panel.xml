@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dashboard"
+        android:textColor="#005ce6"
+        android:textSize="15pt"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:text="Odjavi se"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#990000"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:text="Inventure"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="129dp" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:text="Profil"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="81dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:text="Zadaci"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="177dp" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="264dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <EditText
+        android:id="@+id/editText13"
+        android:layout_width="242dp"
+        android:layout_height="37dp"
+        android:ems="5"
+        android:hint="Pretraga inventura"
+        android:inputType="textPersonName"
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="99dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#99bbff"
+        android:text="Pretraži"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#990000"
+        android:text="Odustani"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#1a75ff"
+        android:text="Dodijeli"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Novi Zadatak"
+        android:textColor="#005ce6"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <EditText
+        android:id="@+id/editText14"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="404dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:text="Rok za izvršenje: "
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+
+</android.support.constraint.ConstraintLayout>

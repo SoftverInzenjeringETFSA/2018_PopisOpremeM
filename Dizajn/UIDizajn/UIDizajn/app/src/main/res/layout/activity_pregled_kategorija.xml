@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="335dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="242dp"
+        android:layout_height="37dp"
+        android:ems="5"
+        android:hint="Pretraga po nazivu"
+        android:inputType="textPersonName"
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kategorije"
+        android:textColor="#005ce6"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="99dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#99bbff"
+        android:text="Pretraži"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="96dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#990000"
+        android:text="Obriši"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="259dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="152dp"
+        android:layout_height="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#009933"
+        android:text="Dodaj kategoriju"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="96dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#1a75ff"
+        android:text="Uredi"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+</android.support.constraint.ConstraintLayout>

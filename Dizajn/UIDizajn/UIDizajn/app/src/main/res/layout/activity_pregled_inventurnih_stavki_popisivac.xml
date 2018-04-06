@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="242dp"
+        android:layout_height="37dp"
+        android:ems="5"
+        android:hint="Pretraga po nazivu"
+        android:inputType="textPersonName"
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="99dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#99bbff"
+        android:text="Pretraži"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="271dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inventurne stavke"
+        android:textColor="#005ce6"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="354dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#1a75ff"
+        android:text="Unesi inventurnu stavku"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="249dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#009933"
+        android:text="Upiši stavku u inventuru"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="96dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#1a75ff"
+        android:text="Uredi"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="259dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+</android.support.constraint.ConstraintLayout>

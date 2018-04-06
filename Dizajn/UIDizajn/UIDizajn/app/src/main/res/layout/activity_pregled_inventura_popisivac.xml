@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText12"
+        android:layout_width="242dp"
+        android:layout_height="37dp"
+        android:ems="5"
+        android:hint="Pretraga po nazivu"
+        android:inputType="textPersonName"
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="99dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#99bbff"
+        android:text="Pretraži"
+        tools:layout_editor_absoluteX="256dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="337dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inventure"
+        android:textColor="#005ce6"
+        android:textSize="13pt"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="345dp"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#009933"
+        android:text="Izvrši inventuru"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="450dp" />
+
+</android.support.constraint.ConstraintLayout>

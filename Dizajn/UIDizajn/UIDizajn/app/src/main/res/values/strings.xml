@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UI Dizajn</string>
+    <string name="title_activity_popisivac_panel">PopisivacPanel</string>
+    <string name="title_activity_kreiranje_popisivaca">KreiranjePopisivaca</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
