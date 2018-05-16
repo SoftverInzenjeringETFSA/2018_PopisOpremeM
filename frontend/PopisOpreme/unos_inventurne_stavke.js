@@ -12,10 +12,22 @@ import {StackNavigator,} from 'react-navigation';
 import { BarCodeScanner, Permissions, Constants, Expo } from 'expo';
 
 class unosStavkeHome extends React.Component{
+  constructor(props) {
+       super(props)
+       this.state = {
+           editable: false
+       }
 
+       this.toggleEditable = this.toggleEditable.bind(this)
+   }
+
+   toggleEditable() {
+       this.setState({
+           editable: !this.state.editable
+       })
+   }
   render(){
     const {navigate}= this.props.navigation;
-    const {state} = this.props.navigation;
     return(
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -34,14 +46,14 @@ class unosStavkeHome extends React.Component{
         </View>
         <View style={styles.rucniunosbtn}>
             <Button
-              title={'RUČNI UNOS'}
+              title={'RUČNI UNOS'} onPress={()=>this.toggleEditable()}
             />
         </View>
         <View style={styles.barkod}>
             <TextInput
               style={{height: 40, borderColor: 'gray', borderWidth: 2, textAlign:'center'}}
               placeholder={'*barkod*'}
-              editable={false}
+              editable={this.state.editable}
               maxLength = {12}
             />
         </View>
