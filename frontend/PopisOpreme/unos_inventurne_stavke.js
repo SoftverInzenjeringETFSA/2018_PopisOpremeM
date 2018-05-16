@@ -8,20 +8,10 @@ import {
   Button,
   TextInput
 } from 'react-native';
-import BarcodeScannerApp from './BarcodeScannerApp' ;
 import {StackNavigator,} from 'react-navigation';
 
 type Props = {};
 export default class unos_inventurne_stavke extends Component<Props> {
-/*  static navigationOptions =
-   {
-      title: 'MainActivity',
-   };
-  FunctionToOpenSecondActivity = () =>
-  {
-    this.props.navigation.navigate('SecondActivity');
-
-  }*/
   render() {
     return (
       <View style={styles.container}>
@@ -62,12 +52,6 @@ export default class unos_inventurne_stavke extends Component<Props> {
     );
   }
 }
-/*export default Project = StackNavigator(
-{
- First: { screen: MainActivity },
-
- Second: { screen: SecondActivity }
-});*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
