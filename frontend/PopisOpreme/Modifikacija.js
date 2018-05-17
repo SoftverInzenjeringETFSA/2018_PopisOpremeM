@@ -10,7 +10,7 @@ import {
     Item
 } from 'react-native';
 
-export default class InventurneStavke extends Component {
+export default class Modifikacija extends Component {
     
     state={
         name:'',

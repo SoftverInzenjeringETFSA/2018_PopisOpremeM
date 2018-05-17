@@ -10,6 +10,7 @@ import { StackNavigator } from 'react-navigation'
 import UnosStavke from './UnosStavke';
 import Modifikacija from './Modifikacija';
 import InventurneStavke from'./InventurneStavke';
+import Help from './help'
 
 
 class DashBoard extends Component {
@@ -74,6 +75,14 @@ class DashBoard extends Component {
                     </Text>
                 </TouchableOpacity>
                 </View>
+                <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('Help')}>
+                    <Text style = {styles.buttonText}>
+                        HELP
+                    </Text>
+                </TouchableOpacity>
+                </View>
+
 
                 <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.redButton}>
@@ -147,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         justifyContent:'center',
         margin:7,
-        marginTop:40
+        marginTop:25
     },
     RedButtonText:{
         fontSize:16,
@@ -159,7 +168,8 @@ const styles = StyleSheet.create({
 
 var MyScreens=StackNavigator({
 Home:{screen: DashBoard},
-InventurneStavke:{screen: InventurneStavke}
+InventurneStavke:{screen: InventurneStavke},
+Help:{screen:Help}
 },
 {
     headerMode: 'none',
