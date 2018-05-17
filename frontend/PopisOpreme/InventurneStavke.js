@@ -7,8 +7,11 @@ import {
     TouchableOpacity,
     TextInput,
 } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import UnosStavke from './UnosStavke';
+import Modifikacija from './Modifikacija';
 
-export default class InventurneStavke extends Component {
+class InventurneStavke extends Component {
     
     state={
         name:'',
@@ -19,6 +22,7 @@ export default class InventurneStavke extends Component {
     }
     
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
 
@@ -67,7 +71,7 @@ export default class InventurneStavke extends Component {
 
                     <View style={styles.controls}>
 
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigate('UnosStavke')}>
                             
                             <Text style = {styles.RedButtonText}>
                                  DODAJ 
@@ -78,7 +82,7 @@ export default class InventurneStavke extends Component {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigate('Modifikacija')}>
                             
                             <Text style = {styles.RedButtonText}>
                                  UREDI
@@ -208,4 +212,19 @@ const styles = StyleSheet.create({
     }
 });
 
+var MyScreens=StackNavigator({
+    InventurneStavke:{screen: InventurneStavke},
+    Modifikacija:{screen: Modifikacija},
+    UnosStavke:{screen: UnosStavke}
+    },
+   
+    {
+        headerMode: 'none',
+        navigationOptions: {
+          headerVisible: false,
+        }
+       }
+    );
+    
+    export default MyScreens;
 

@@ -6,11 +6,17 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import UnosStavke from './UnosStavke';
+import Modifikacija from './Modifikacija';
+import InventurneStavke from'./InventurneStavke';
 
-export default class DashBoard extends Component {
+
+class DashBoard extends Component {
 
    
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
 
@@ -46,7 +52,7 @@ export default class DashBoard extends Component {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('InventurneStavke')}>
                     <Text style = {styles.buttonText}>
                         INVENTURNE STAVKE   
                     </Text>
@@ -151,3 +157,16 @@ const styles = StyleSheet.create({
 });
 
 
+var MyScreens=StackNavigator({
+Home:{screen: DashBoard},
+InventurneStavke:{screen: InventurneStavke}
+},
+{
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+   }
+);
+
+export default MyScreens;

@@ -23,6 +23,7 @@ export default class InventurneStavke extends Component {
     
     
     render() {
+        const {goBack} = this.props.navigation;
         return (
             <View style={styles.container}>
 
@@ -108,7 +109,7 @@ export default class InventurneStavke extends Component {
                         
                  </View>
                  <View style={styles.rowbutton}> 
-                    <TouchableOpacity style={styles.redButton}>
+                    <TouchableOpacity style={styles.redButton} onPress={() => goBack()}>
                                 
                                 <Text style = {styles.RedButtonText}>
                                     ODUSTANI
