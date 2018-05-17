@@ -33,6 +33,11 @@ public class ItemService {
 	}
 
     public Item createItem(Item item) {
+    	
+    	if(item.getQuantity() < 0) throw new Error("Neispravna količina");
+    	String s = item.getName().toLowerCase();
+    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') throw new Error("Neispravan naziv");
+    	
    		Item it = new Item(item);
    		Items.add(it);
    		return it;
