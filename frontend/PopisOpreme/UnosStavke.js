@@ -25,7 +25,9 @@ export default class UnosStavke extends Component {
             description: '',
             unitOfMeasurement: 'kg',
             category: 'Category 1',
-            response: ''
+            response: '',
+            isPresent: true,
+            isCorrect: true
         }
     }
 
@@ -38,7 +40,7 @@ export default class UnosStavke extends Component {
                 || this.state.value === ''
                 || this.state.quantity === '') throw new Error("Popunite polja");
 
-            await fetch('http://localhost:8080/createItem', {
+            return fetch('http://localhost:8080/createItem', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -52,20 +54,22 @@ export default class UnosStavke extends Component {
                         description: 'opis',
                         parent: null
                     },
-                    quantity: this.state.quantity,
-                    value: this.state.value,
+                    quantity: parseFloat(this.state.quantity),
+                    value:  parseFloat(this.state.value),
                     dateOfPurchase: this.state.dateOfPurchase,
-                    unitOfMeasurement: this.state.unitOfMeasurement
+                    unitOfMeasurement: this.state.unitOfMeasurement,
+                    isPresent: this.state.isPresent,
+                    isCorrect: this.state.isCorrect
                 })
             })
                 .then((response) => {
 
                     this.setState({response: response.json()});
-                    Alert.alert(this.state.response);
+                    Alert.alert("Message", this.state.response);
                 })
                 .catch((error) => {
 
-                    Alert.alert(error.message);
+                    Alert.alert("Error", error.message);
                 });
         }
         catch (error) {
@@ -126,20 +130,20 @@ export default class UnosStavke extends Component {
     render() {
         return (
             <ScrollView style = {styles.container}>
-                <Text style = {styles.title}>New Inventory Item</Text>
+                <Text style = {styles.title}>Nova Inventurna Stavka</Text>
                 <View style = {styles.main}>
-                    <Text style = {styles.label}>Name:</Text>
+                    <Text style = {styles.label}>Naziv:</Text>
                     <TextInput style = {{height: 40}}
                                onChangeText = {this.checkNameInput}
                                value = {this.state.name}/>
                     <Text style = {styles.label}
                           onChangeText = {(desc) => this.setState({description: desc})}
-                    >Description:</Text>
+                    >Opis:</Text>
                     <TextInput
                         multiline = {true}
                         style = {{height: 50}}/>
                     <View style = {styles.row}>
-                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Quantity:</Text>
+                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Količina:</Text>
                         <TextInput
                             style = {{width: '70%', height: 40}}
                             keyboardType = {'numeric'}
@@ -147,7 +151,7 @@ export default class UnosStavke extends Component {
                             value = {this.state.quantity}/>
                     </View>
                     <View style = {styles.row}>
-                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Value:</Text>
+                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Vrijednost:</Text>
                         <TextInput
                             style = {{width: '70%', height: 40}}
                             keyboardType = {'numeric'}
@@ -155,7 +159,7 @@ export default class UnosStavke extends Component {
                             value = {this.state.value}/>
                     </View>
                     <View style = {styles.row}>
-                        <Text style = {styles.label}>Category:</Text>
+                        <Text style = {styles.label}>Kategorija:</Text>
                         <Picker
                             mode = "dropdown"
                             style = {{
@@ -175,7 +179,7 @@ export default class UnosStavke extends Component {
                         </Picker>
                     </View>
                     <View style = {styles.row}>
-                        <Text style = {styles.label}>Unit of measurement:</Text>
+                        <Text style = {styles.label}>Mjerna jedinica:</Text>
                         <Picker
                             style = {{
                                 backgroundColor: '#cdd2d6',
@@ -193,7 +197,7 @@ export default class UnosStavke extends Component {
                         </Picker>
                     </View>
                     <View style = {styles.row}>
-                        <Text style = {styles.label}>Date of purchase:</Text>
+                        <Text style = {styles.label}>Datum kupovine:</Text>
                         <DatePicker
                             style = {{backgroundColor: '#cdd2d6', width: '50%', marginTop: 10}}
                             date = {this.state.dateOfPurchase}
@@ -218,15 +222,56 @@ export default class UnosStavke extends Component {
                                 this.setState({dateOfPurchase: date})
                             }}
                         />
+                        </View>
+                    <View style={styles.row}>
+
+                        <Text style={styles.label}>Ispravna:</Text>
+
+                        <Picker style = {{
+                            backgroundColor: '#cdd2d6',
+                            height: 40,
+                            width: '50%',
+                            marginTop: 10,
+                            color: '#111'
+                        }}
+                                mode="dropdown"
+                                selectedValue={this.state.isCorrect}
+                                onValueChange={(itemValue, itemIndex) => this.setState({isCorrect: itemValue})}>
+                            <Picker.Item label="True" value={true} />
+                            <Picker.Item label="False" value={false} />
+
+                        </Picker>
+
+
+                    </View>
+
+                    <View style={styles.row}>
+
+                        <Text style={styles.label}>Prisutna:</Text>
+
+                        <Picker style = {{
+                            backgroundColor: '#cdd2d6',
+                            height: 40,
+                            width: '50%',
+                            marginTop: 10,
+                            color: '#111'
+                        }}
+                                mode="dropdown"
+                                selectedValue={this.state.isPresent}
+                                onValueChange={(itemValue, itemIndex) => this.setState({isPresent: itemValue})}>
+                            <Picker.Item label="True" value={true} />
+                            <Picker.Item label="False" value={false} />
+
+                        </Picker>
                     </View>
                     <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginTop: 50}}
                             buttonStyle = {{backgroundColor: '#4facff', height: 40}}
-                            title = {'Create'}
+                            title = {'Kreiraj'}
                             onPress = {this.sendData.bind(this)}
                     />
                     <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginBottom: 50, marginTop: 10}}
                             buttonStyle = {{backgroundColor: '#dd1c20', height: 40}}
-                            title = {'Cancel'}/>
+                            title = {'Odustani'}/>
                 </View>
             </ScrollView>
         );

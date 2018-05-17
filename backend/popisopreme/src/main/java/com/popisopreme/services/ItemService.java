@@ -15,9 +15,9 @@ import com.popisopreme.models.Item;
 public class ItemService {
 
 	private List<Item> Items=new ArrayList<>(Arrays.asList(
-		new Item("prva","jedinica mjere",1.22,"opis",1,new Date(11,12,2018),new Category("kategorija","opis")),
-		new Item("druga","jedinica mjere",1.22,"opis",2,new Date(11,12,2018),new Category("kategorija","opis")),
-		new Item("treca","jedinica mjere",1.22,"opis",3,new Date(11,12,2018),new Category("kategorija","opis"))
+		new Item("prva","jedinica mjere",1.22,"opis",1,new Date(11,12,2018),new Category("kategorija","opis"), true, true),
+		new Item("druga","jedinica mjere",1.22,"opis",2,new Date(11,12,2018),new Category("kategorija","opis"), true, true),
+		new Item("treca","jedinica mjere",1.22,"opis",3,new Date(11,12,2018),new Category("kategorija","opis"), true, true)
 			)); 
 				
 	public List<Item> getAllItems(){
