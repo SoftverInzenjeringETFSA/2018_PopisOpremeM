@@ -23,12 +23,11 @@ public class ItemController {
 	}
 
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
-    	public Item create(@RequestBody Item item) {
+    	public String create(@RequestBody Item item) {
 		
-			Item i = itemService.createItem(item);
-    		if(i == null) throw new Error("Neispravni parametri");
-    		return i;
-    	}
+		itemService.createItem(item);
+		return "{\"message\":\"Uspješno kreirana stavka\"}";
+    }
 	
 	@RequestMapping(method= RequestMethod.PUT, value="/updateItem/{br}")
 	public Item update(@RequestBody Item item,@PathVariable String br) {
