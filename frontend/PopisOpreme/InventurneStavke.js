@@ -57,16 +57,7 @@ class InventurneStavke extends Component {
                     </View>
 
                     <View style={styles.list}>
-                        <Text style = {styles.ListView}>Ime:</Text>
-
-                        <Text style = {styles.ListView}>Barkod:</Text>
-
-                        <Text style = {styles.ListView}>Kolicina:</Text>
-
-                        <Text style = {styles.ListView}>Datum kupovine:</Text>
-
-                        <Text style = {styles.ListView}>Vrijednost:</Text>
-
+                        
                     </View>
 
                     <View style={styles.controls}>
