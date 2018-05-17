@@ -15,6 +15,13 @@ public class Category {
 
 	}
 
+	public Category(Category c){
+
+		super();
+		name = c.getName();
+		description = c.getDescription();		
+	}
+	
 	public String getName() {
 		return name;
 	}

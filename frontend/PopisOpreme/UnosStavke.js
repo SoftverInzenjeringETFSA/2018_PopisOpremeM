@@ -6,12 +6,43 @@ import {
     View,
     TextInput,
     Picker,
-	ScrollView
+	ScrollView,
+    Alert
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { Button } from 'react-native-elements';
 
 export default class UnosStavke extends Component {
+
+    sendData = async () => {
+
+        return fetch('http://localhost:8080/createItem', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: 'name',
+                description: 'desc',
+                category: {
+                    name : "kategorija",
+                    description: "opis",
+                    parent: null
+                },
+                quantity: '2',
+                value: '1.22',
+                dateOfPurchase: 'bla',
+                unitOfMeasurement: 'crate'
+            }),
+        }).then((response) => response.json())
+            .then((responseJson) => {
+                Alert.alert("message", responseJson);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     constructor(props){
         super(props);
@@ -75,25 +106,25 @@ export default class UnosStavke extends Component {
                 <Text style={styles.title}>New Inventory Item</Text>
                 <View style={styles.main}>
 				<Text style={styles.label}>Name:</Text>
-                    <TextInput style={{backgroundColor: '#1fc496', height: 40}}
+                    <TextInput style={{height: 40}}
                                onChangeText={this.checkNameInput}
                                value={this.state.name}/>
                     <Text style={styles.label}>Description:</Text>
                     <TextInput
                         multiline = {true}
-						style={{backgroundColor: '#1fc496', height: 80}}/>
+						style={{height: 50}}/>
                     <View style={styles.row}>
-                        <Text style = {{width: '30%',  color: '#fff', fontSize: 15, marginTop: 15}}>Quantity:</Text>
+                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Quantity:</Text>
                         <TextInput
-                            style = {{ backgroundColor: '#1fc496', width: '70%', height: 40}}
+                            style = {{ width: '70%', height: 40}}
                             keyboardType = {'numeric'}
                             onChangeText={this.checkNumberInput}
                             value={this.state.quantity}/>
                     </View>
                     <View style={styles.row}>
-                        <Text style = {{width: '30%',  color: '#fff', fontSize: 15, marginTop: 15}}>Value:</Text>
+                        <Text style = {{width: '30%', fontSize: 15, marginTop: 15}}>Value:</Text>
                         <TextInput
-                            style = {{ backgroundColor: '#1fc496', width: '70%', height: 40}}
+                            style = {{ width: '70%', height: 40}}
                             keyboardType = {'numeric'}
                             onChangeText={this.checkValueInput}
                             value={this.state.value}/>
@@ -102,7 +133,7 @@ export default class UnosStavke extends Component {
                         <Text style={styles.label}>Category:</Text>
                         <Picker
                             mode="dropdown"
-                            style = {{height: 40, width: '50%', marginTop: 10, color: '#111', backgroundColor: '#1fc496'}}
+                            style = {{ backgroundColor: '#cdd2d6', height: 40, width: '50%', marginTop: 10, color: '#111'}}
                             selectedValue={this.state.category}
                             onValueChange={(itemValue, itemIndex) => this.setState({category: itemValue})}>
                             <Picker.Item label="Category 1" value="1" />
@@ -115,7 +146,7 @@ export default class UnosStavke extends Component {
                     <View style={styles.row}>
                         <Text style={styles.label}>Unit of measurement:</Text>
                         <Picker
-                            style = {{height: 40, width: '50%', marginTop: 10, color: '#111', backgroundColor: '#1fc496'}}
+                            style = {{backgroundColor: '#cdd2d6', height: 40, width: '50%', marginTop: 10, color: '#111'}}
                             mode="dropdown"
                             selectedValue={this.state.unit}
                             onValueChange={(itemValue, itemIndex) => this.setState({unit: itemValue})}>
@@ -129,7 +160,7 @@ export default class UnosStavke extends Component {
                     <View style={styles.row}>
                         <Text style={styles.label}>Date of purchase:</Text>
                         <DatePicker
-                            style = {{width: '50%', marginTop: 10, backgroundColor: '#1fc496'}}
+                            style = {{backgroundColor: '#cdd2d6', width: '50%', marginTop: 10}}
                             date={this.state.date}
                             mode="date"
                             placeholder="Select date"
@@ -151,9 +182,14 @@ export default class UnosStavke extends Component {
                             onDateChange={(date) => {this.setState({date: date})}}
                         />
                     </View>
-                    <Button containerViewStyle={{width: '100%', marginLeft: 0, marginBottom: 50, marginTop: 50}} 
-							buttonStyle = {{height: 50, backgroundColor: '#1fc496'}} 
-							title={'Create'}/>
+                    <Button containerViewStyle={{width: '100%', marginLeft: 0, marginTop: 50}}
+							buttonStyle = {{backgroundColor: '#4facff', height: 40}}
+							title={'Create'}
+                            onPress={this.sendData.bind(this)}
+                    />
+                    <Button containerViewStyle={{width: '100%', marginLeft: 0, marginBottom: 50, marginTop: 10}}
+                            buttonStyle = {{backgroundColor: '#dd1c20', height: 40}}
+                            title={'Cancel'}/>
                 </View>
             </ScrollView>
         );
@@ -163,21 +199,19 @@ export default class UnosStavke extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#111',
+        backgroundColor: '#fff',
         padding: 10
     },
     title: {
         fontSize: 35,
         textAlign: 'center',
-        color: '#1fc496',
-        fontWeight: 'bold'
+        color: '#2162bc'
     },
     label: {
         width: '50%',
         fontSize: 15,
         marginTop: 25,
         textAlign: 'left',
-        color: '#fff',
         justifyContent: 'center'
     },
     main: {

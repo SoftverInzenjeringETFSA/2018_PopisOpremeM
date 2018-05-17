@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import UnosStavke from './UnosStavke';
-
+import DashBoard from './DashBoard';
 export default class App extends Component {
 
   render() {
