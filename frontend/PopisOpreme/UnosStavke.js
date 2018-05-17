@@ -57,12 +57,19 @@ export default class UnosStavke extends Component {
         }
     }
 
-    checkNumberInput = (text) => {
+    checkQuantityInput = (text) => {
         let newText = '';
-        let numbers = '0123456789';
+        let numbers = '0123456789.';
+        let dot = 0;
 
         for (var i = 0; i < text.length; i++) {
+
+            if(i === 0 && text[i] === '.') continue;
+            if(dot === 1 && text[i] === '.') continue;
+
             if ( numbers.indexOf(text[i]) > -1 ) {
+
+                if(text[i] === '.') dot = 1;
                 newText = newText + text[i];
             }
         }
@@ -118,7 +125,7 @@ export default class UnosStavke extends Component {
                         <TextInput
                             style = {{ width: '70%', height: 40}}
                             keyboardType = {'numeric'}
-                            onChangeText={this.checkNumberInput}
+                            onChangeText={this.checkQuantityInput}
                             value={this.state.quantity}/>
                     </View>
                     <View style={styles.row}>

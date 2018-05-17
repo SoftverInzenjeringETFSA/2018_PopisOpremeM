@@ -33,6 +33,11 @@ public class ItemService {
 	}
 
     public Item createItem(Item item) {
+    	
+    	if(item.getQuantity() < 0) return null;
+    	String s = item.getName().toLowerCase();
+    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') return null;
+    	
    		Item it = new Item(item);
    		Items.add(it);
    		return it;
