@@ -6,9 +6,11 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-export default class Obrisi extends Component {
+export default class Obrisi extends Component{
    
-    
+    state={
+        id:this.props.id
+    }
     
     render() {
         const {goBack} = this.props.navigation;
@@ -41,10 +43,15 @@ export default class Obrisi extends Component {
 
                 <View style={styles.rowbutton}>
 
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={()=>fetch("http://192.168.1.45:8080/deleteItem/100000000003",{method:'delete'}).then(res =>res.text()).then(res=>alert(res))}>
+                    
+                       
+            
+             
                                 
-                                <Text style = {styles.RedButtonText}>
-                                    SAČUVAJ
+                                <Text style = {styles.RedButtonText}
+                            >
+                                    OBRIŠI
                                 </Text>
 
                     </TouchableOpacity>

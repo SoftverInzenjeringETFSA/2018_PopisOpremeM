@@ -87,7 +87,7 @@ class InventurneStavke extends Component {
 
                     <TouchableOpacity style={styles.button}>
                             
-                            <Text style = {styles.RedButtonText} onPress={() => navigate('Otpis')}>
+                            <Text style = {styles.RedButtonText} onPress={() => navigate('Otpis',{id:'100001'})}>
                                  OTPIŠI
                             </Text>
 
