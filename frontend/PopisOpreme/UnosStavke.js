@@ -73,7 +73,7 @@ export default class UnosStavke extends Component {
                 });
         }
         catch (error) {
-            Alert.alert(error.message);
+            Alert.alert("Error", error.message);
         }
     }
 
@@ -130,7 +130,15 @@ export default class UnosStavke extends Component {
     render() {
         return (
             <ScrollView style = {styles.container}>
+
+                <View style={styles.header}>
+
+                    <Text style={styles.title1}>Popis Opreme</Text>
+
+                </View>
+
                 <Text style = {styles.title}>Nova Inventurna Stavka</Text>
+
                 <View style = {styles.main}>
                     <Text style = {styles.label}>Naziv:</Text>
                     <TextInput style = {{height: 40}}
@@ -165,7 +173,7 @@ export default class UnosStavke extends Component {
                             style = {{
                                 backgroundColor: '#cdd2d6',
                                 height: 40,
-                                width: '50%',
+                                width: '60%',
                                 marginTop: 10,
                                 color: '#111'
                             }}
@@ -184,7 +192,7 @@ export default class UnosStavke extends Component {
                             style = {{
                                 backgroundColor: '#cdd2d6',
                                 height: 40,
-                                width: '50%',
+                                width: '60%',
                                 marginTop: 10,
                                 color: '#111'
                             }}
@@ -199,7 +207,7 @@ export default class UnosStavke extends Component {
                     <View style = {styles.row}>
                         <Text style = {styles.label}>Datum kupovine:</Text>
                         <DatePicker
-                            style = {{backgroundColor: '#cdd2d6', width: '50%', marginTop: 10}}
+                            style = {{backgroundColor: '#cdd2d6', width: '60%', marginTop: 10}}
                             date = {this.state.dateOfPurchase}
                             mode = "date"
                             placeholder = "Select date"
@@ -215,7 +223,7 @@ export default class UnosStavke extends Component {
                                 },
                                 dateInput: {
 
-                                    marginLeft: 36
+                                    marginLeft: 35
                                 }
                             }}
                             onDateChange = {(date) => {
@@ -230,7 +238,7 @@ export default class UnosStavke extends Component {
                         <Picker style = {{
                             backgroundColor: '#cdd2d6',
                             height: 40,
-                            width: '50%',
+                            width: '60%',
                             marginTop: 10,
                             color: '#111'
                         }}
@@ -252,7 +260,7 @@ export default class UnosStavke extends Component {
                         <Picker style = {{
                             backgroundColor: '#cdd2d6',
                             height: 40,
-                            width: '50%',
+                            width: '60%',
                             marginTop: 10,
                             color: '#111'
                         }}
@@ -265,7 +273,7 @@ export default class UnosStavke extends Component {
                         </Picker>
                     </View>
                     <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginTop: 50}}
-                            buttonStyle = {{backgroundColor: '#4facff', height: 40}}
+                            buttonStyle = {{backgroundColor: '#4587f9', height: 40}}
                             title = {'Kreiraj'}
                             onPress = {this.sendData.bind(this)}
                     />
@@ -281,8 +289,20 @@ export default class UnosStavke extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        padding: 10
+        backgroundColor: '#fff'
+    },
+    title1:{
+        color:'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 10
+    },
+    header:{
+        height: '7%',
+        backgroundColor: '#2d63b7' ,
+        alignItems : 'flex-start',
+        justifyContent:'center',
+        marginBottom: 10
     },
     title: {
         fontSize: 35,
@@ -290,7 +310,7 @@ const styles = StyleSheet.create({
         color: '#2d63b7'
     },
     label: {
-        width: '50%',
+        width: '40%',
         fontSize: 15,
         marginTop: 25,
         textAlign: 'left',

@@ -6,6 +6,7 @@ import {
     View,
     TouchableOpacity,
     TextInput,
+    ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation'
 import UnosStavke from './UnosStavke';

@@ -16,6 +16,13 @@ export default class UredjivanjeProfila extends Component {
     render() {
         return (
             <ScrollView style = {styles.container}>
+
+                <View style={styles.header}>
+
+                    <Text style={styles.title1}>Popis Opreme</Text>
+
+                </View>
+
                 <Text style = {styles.title}>Uredi Profil</Text>
 
                 <View style = {styles.main}>
@@ -29,10 +36,10 @@ export default class UredjivanjeProfila extends Component {
                     <TextInput secureTextEntry={true} placeholder={"Potvrdi šifru"} style = {{fontSize:15, height: 40}}/>
 
                     <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginTop: 50}}
-                            buttonStyle = {{backgroundColor: '#4facff', height: 40}}
+                            buttonStyle = {{backgroundColor: '#4587f9', height: 40}}
                             title = {'Sačuvaj'}/>
 
-                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginBottom: 30, marginTop: 10}}
+                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginBottom: 25, marginTop: 10}}
                             buttonStyle = {{backgroundColor: '#dd1c20', height: 40}}
                             title = {'Odustani'}/>
                 </View>
@@ -46,7 +53,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 10
+    },
+    title1:{
+        color:'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 10
+    },
+    header:{
+        height: '7%',
+        backgroundColor: '#2d63b7' ,
+        alignItems : 'flex-start',
+        justifyContent:'center',
+        marginBottom: 10
     },
     title: {
         fontSize: 35,

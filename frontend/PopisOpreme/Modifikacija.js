@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     TextInput,
     Picker,
+    ScrollView,
     Item
 } from 'react-native';
 
@@ -25,7 +26,7 @@ export default class Modifikacija extends Component {
     render() {
         const {goBack} = this.props.navigation;
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 <View style={styles.header}>
 
@@ -58,7 +59,7 @@ export default class Modifikacija extends Component {
 
                     <Text style={styles.rowtext1}>Kategorija:</Text>
 
-                    <Picker style={styles.rowtext2} mode="dropdown"
+                    <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
                         selectedValue={this.state.selected}
                         onValueChange={(itemValue, itemIndex) => this.setState({kategorija: itemValue})}>
                         {this.state.kategorije.map((item, index) => {
@@ -72,7 +73,7 @@ export default class Modifikacija extends Component {
                  
                  <Text style={styles.rowtext1}>Ispravna:</Text>
 
-                    <Picker style={styles.rowtext2} mode="dropdown"
+                    <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
                         selectedValue={this.state.ispravna}
                         onValueChange={(itemValue, itemIndex) => this.setState({ispravna: itemValue})}>
                         <Picker.Item label="True" value={true} />
@@ -87,7 +88,7 @@ export default class Modifikacija extends Component {
                  
                     <Text style={styles.rowtext1}>Prisutna:</Text>
 
-                    <Picker style={styles.rowtext2} mode="dropdown"
+                    <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
                         selectedValue={this.state.prisutna}
                         onValueChange={(itemValue, itemIndex) => this.setState({prisutna: itemValue})}>
                         <Picker.Item label="True" value={true} />
@@ -121,8 +122,8 @@ export default class Modifikacija extends Component {
 
                 </View>
                
-               
-            </View>
+
+            </ScrollView>
         );
     }
 }
@@ -131,74 +132,66 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-      
     },
     button:{
         backgroundColor:'#4587f9',
-        flex:0.9,
+        width: '100%',
         height:40,
         alignItems : 'center',
         justifyContent:'center',
-        marginTop:40
-       
+        marginTop:30
     },
     redButton:{
         backgroundColor:'#dd1c20',
-        flex:0.9,
+        width: '100%',
         height:40,
         alignItems : 'center',
         justifyContent:'center',
-        marginTop:20
-       
     },
     RedButtonText:{
-        fontSize:16,
+        fontSize:15,
         fontWeight:'bold',
         color:'white'
     },
     rowtext:{
-        flex:0.9,
-      
+        width: '100%',
         fontSize:15,
-
     },
     rowtext1:{
-        flex:0.2,
-          
+        width: '30%',
         fontSize:15,
-       
-      
-
     },
     rowtext2:{
-        flex:0.6
+        width: '70%',
     },
     row:{
-        flex:0.1,
+        width: '100%',
         flexDirection:'row',
         alignItems : 'center',
         justifyContent:'center',
-        margin:5
+        margin: 5
     },
     rowbutton:{
-        flex:0.15,
+
+        width: '100%',
         flexDirection:'row',
         alignItems : 'center',
         justifyContent:'center',
-        margin:5
+        margin: 5
     },
     header:{
-        flex:0.1,
+
+        height: '7%',
         backgroundColor: '#2d63b7' ,
         alignItems : 'flex-start',
-        justifyContent:'center'
+        justifyContent:'center',
+        marginBottom: 10
     },
     title1:{
         color:'white',
-        fontSize: 21,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 10,
-        marginBottom:10
+        marginLeft: 10
     },
     name:{
         flex:0.1,
@@ -207,10 +200,11 @@ const styles = StyleSheet.create({
     },
     title2:{
         color:'#2d63b7',
-        fontSize: 30
+        fontSize: 35
     },
     body:{
-        flex:0.8,
+        flex:1,
+        padding: 20,
         alignItems : 'center',
         justifyContent:'flex-start'
     }
