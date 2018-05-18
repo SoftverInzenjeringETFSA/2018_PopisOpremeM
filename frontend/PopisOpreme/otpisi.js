@@ -41,7 +41,7 @@ export default class Otpisi extends Component {
 
                 <View style={styles.rowbutton}>
 
-                    <TouchableOpacity style={styles.button} onPress={()=>fetch("http://192.168.1.45:8080/write-off/100000000005",{method:'delete'}).then(res =>res.text()).then(res=>alert(res))}>
+                    <TouchableOpacity style={styles.button} onPress={()=>fetch("http://192.168.169.2:8080/write-off/100000000005",{method:'delete'}).then(res =>res.text()).then(res=>alert(res))}>
                                 
                                 <Text style = {styles.RedButtonText}>
                                     OTPIŠI
