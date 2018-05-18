@@ -22,6 +22,12 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 
+	@RequestMapping(method= RequestMethod.POST, value="/createUser")
+    public String create(@RequestBody User user) {
+		userService.createUser(user);
+		return "{\"message\":\"Uspješno napravljen user\"}";
+	}
+		
 	@RequestMapping(method= RequestMethod.PUT, value="/updateUser/{username}")
 	public String update(@RequestBody User user,@PathVariable String username) {
 		userService.updateUser(user, username);
