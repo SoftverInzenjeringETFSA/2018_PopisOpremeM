@@ -11,6 +11,7 @@ import UnosStavke from './UnosStavke';
 import Modifikacija from './Modifikacija';
 import InventurneStavke from'./InventurneStavke';
 import UredjivanjeProfila from './UredjivanjeProfila';
+import Registracija from './Registracija';
 import Korisnici from './Korisnici';
 import Help from './help'
 
@@ -58,6 +59,14 @@ class DashBoard extends Component {
                 <TouchableOpacity style={styles.button} onPress={() => navigate('InventurneStavke')}>
                     <Text style = {styles.buttonText}>
                         INVENTURNE STAVKE   
+                    </Text>
+                </TouchableOpacity>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('Registracija')}>
+                    <Text style = {styles.buttonText}>
+                        REGISTRACIJA
                     </Text>
                 </TouchableOpacity>
                 </View>
@@ -172,6 +181,7 @@ var MyScreens=StackNavigator({
 Home:{screen: DashBoard},
 InventurneStavke:{screen: InventurneStavke},
 UredjivanjeProfila: {screen: UredjivanjeProfila},
+Registracija: {screen: Registracija},
 Korisnici: {screen: Korisnici},
 Help:{screen:Help}
 },
