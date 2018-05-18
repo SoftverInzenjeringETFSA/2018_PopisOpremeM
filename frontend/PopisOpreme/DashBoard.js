@@ -10,6 +10,7 @@ import { StackNavigator } from 'react-navigation'
 import UnosStavke from './UnosStavke';
 import Modifikacija from './Modifikacija';
 import InventurneStavke from'./InventurneStavke';
+import UredjivanjeProfila from './UredjivanjeProfila';
 import Help from './help'
 
 
@@ -37,7 +38,7 @@ class DashBoard extends Component {
 
                    
                 <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('UredjivanjeProfila')}>
                     <Text style = {styles.buttonText}>
                         PROFIL
                     </Text>
@@ -169,6 +170,7 @@ const styles = StyleSheet.create({
 var MyScreens=StackNavigator({
 Home:{screen: DashBoard},
 InventurneStavke:{screen: InventurneStavke},
+UredjivanjeProfila: {screen: UredjivanjeProfila},
 Help:{screen:Help}
 },
 {
