@@ -81,7 +81,6 @@ export default class Modifikacija extends Component {
                     
                     </Picker>
 
-
                  </View>  
 
                  <View style={styles.row}>

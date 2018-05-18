@@ -28,7 +28,7 @@ export default class Help extends Component {
 
                 </View>
 
-                <ScrollView style={{padding: 20}}>
+                <ScrollView style={{padding: 5, marginBottom: 20}}>
 
                     <Text style={styles.naslov}>1. Opis projekta</Text>
                     <Text style={styles.Text}>
