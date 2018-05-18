@@ -9,19 +9,17 @@ import {
     ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation'
-import UnosStavke from './UnosStavke';
-import Modifikacija from './Modifikacija';
 
-class InventurneStavke extends Component {
-    
+export default class Korisnici extends Component {
+
     state={
-        name:'',
+        ime:'',
         id:'',
-        kolicina:'',
-        date:'',
-        value:''
+        prezime:'',
+        username:'',
+        email:''
     }
-    
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -33,9 +31,20 @@ class InventurneStavke extends Component {
 
                 </View>
 
-                <View style={styles.name}>
+                <View style={[styles.name, styles.top]}>
 
-                    <Text style={styles.title2}>InventurneStavke</Text>
+                    <Text style={styles.title2}>Korisnici</Text>
+
+                    <TouchableOpacity style={{width: '60%',
+                                            height:40,
+                                            backgroundColor:'#4587f9',
+                                            alignItems : 'center',
+                                            justifyContent:'center',
+                                            margin:3}}>
+                        <Text style = {styles.RedButtonText}>
+                            DODAJ KORISNIKA
+                        </Text>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -43,75 +52,65 @@ class InventurneStavke extends Component {
 
                     <View style={styles.search}>
 
-                        <TextInput style={styles.searchtext} placeholder='Pretraga po barkodu'/>
+                        <TextInput style={styles.searchtext} placeholder='Pretraga po korisničkom imenu'/>
 
-                       
+
                         <TouchableOpacity style={styles.SearchButton}>
-                            
+
                             <Text style = {styles.buttonText}>
-                                 PRETRAŽI
+                                PRETRAŽI
                             </Text>
 
                         </TouchableOpacity>
-               
-                    
+
+
                     </View>
 
                     <View style={styles.list}>
                         <Text style = {styles.ListView}>Ime:</Text>
 
-                        <Text style = {styles.ListView}>Barkod:</Text>
+                        <Text style = {styles.ListView}>Prezime:</Text>
 
-                        <Text style = {styles.ListView}>Kolicina:</Text>
+                        <Text style = {styles.ListView}>Username:</Text>
 
-                        <Text style = {styles.ListView}>Datum kupovine:</Text>
-
-                        <Text style = {styles.ListView}>Vrijednost:</Text>
-
+                        <Text style = {styles.ListView}>Email:</Text>
+                        
                     </View>
 
                     <View style={styles.controls}>
 
-                    <TouchableOpacity style={styles.button} onPress={() => navigate('UnosStavke')}>
-                            
+                        <TouchableOpacity style={[styles.button, {backgroundColor: "#05b557"}]}>
+
                             <Text style = {styles.RedButtonText}>
-                                 DODAJ 
+                                DODIJELI
                             </Text>
                             <Text style = {styles.RedButtonText}>
-                                STAVKU
+                                ZADATAK
                             </Text>
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => navigate('Modifikacija')}>
-                            
+                        <TouchableOpacity style={styles.button}>
+
                             <Text style = {styles.RedButtonText}>
-                                 UREDI
+                                UREDI
                             </Text>
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button}>
-                            
+                        <TouchableOpacity style={styles.redButton}>
+
                             <Text style = {styles.RedButtonText}>
-                                 OTPIŠI
+                                OBRIŠI
                             </Text>
 
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.redButton}>
-                            
-                            <Text style = {styles.RedButtonText}>
-                                 OBRIŠI
-                            </Text>
-
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
                     </View>
 
                 </View>
-               
-               
+
+
             </View>
         );
     }
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-      
+
     },
     controls:{
         flex:0.2,
@@ -142,7 +141,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     searchtext:{
-        flex:0.55,
+
+        width: '70%',
         fontSize:15
     },
     header:{
@@ -153,27 +153,36 @@ const styles = StyleSheet.create({
     },
     title1:{
         color:'white',
-        fontSize: 21,
+        fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 10
     },
     name:{
-        flex:0.1,
-        alignItems : 'center',
-        justifyContent:'center'
+
+        width: '100%',
+    },
+    top: {
+
+        padding: 10,
+        width: '100%',
+        flexDirection: 'row'
     },
     title2:{
         color:'#2d63b7',
-        fontSize: 30
+        fontSize: 35,
+        width: '40%',
+        textAlign: 'center'
     },
     body:{
-        flex:0.8,
+
+        flex: 1,
+        padding: 10,
         alignItems : 'center',
         justifyContent:'flex-start'
     },
     SearchButton:{
         backgroundColor:'#569add',
-        flex:0.35,
+        width: '30%',
         height:35,
         alignItems : 'center',
         justifyContent:'center',
@@ -190,42 +199,28 @@ const styles = StyleSheet.create({
         height:40,
         alignItems : 'center',
         justifyContent:'center',
-        margin:3
+        margin:3,
     },
     RedButtonText:{
-        fontSize:16,
+        fontSize:15,
         fontWeight:'bold',
         color:'white'
     },
     search:{
-        flex:0.1,
+
+        width: '100%',
+        padding: 10,
         flexDirection:'row',
         alignItems : 'center',
         justifyContent:'flex-start',
     },
     button:{
         backgroundColor:'#4587f9',
-        flex:0.25,
+        flex:0.35,
         height:40,
         alignItems : 'center',
         justifyContent:'center',
         margin:3
     }
 });
-
-var MyScreens=StackNavigator({
-    InventurneStavke:{screen: InventurneStavke},
-    Modifikacija:{screen: Modifikacija},
-    UnosStavke:{screen: UnosStavke}
-    },
-   
-    {
-        headerMode: 'none',
-        navigationOptions: {
-          headerVisible: false,
-        }
-       }
-    );
-    
-    export default MyScreens;
 
