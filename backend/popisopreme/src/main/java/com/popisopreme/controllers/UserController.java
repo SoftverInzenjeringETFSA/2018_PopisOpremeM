@@ -24,20 +24,17 @@ public class UserController {
 
 	@RequestMapping(method= RequestMethod.POST, value="/createUser")
     public String create(@RequestBody User user) {
-		userService.createUser(user);
-		return "{\"message\":\"Uspješno napravljen user\"}";
+		return userService.createUser(user);
 	}
 		
-	@RequestMapping(method= RequestMethod.PUT, value="/updateUser/{username}")
-	public String update(@RequestBody User user,@PathVariable String username) {
-		userService.updateUser(user, username);
-		return "{\"message\":\"Uspješno promijenjeni podaci\"}";
+	@RequestMapping(method= RequestMethod.PUT, value="/updateUser/{id}")
+	public String update(@RequestBody User user,@PathVariable String id) {
+		return userService.updateUser(user, id);
 	}
 	
-	@RequestMapping(method= RequestMethod.DELETE, value="/deleteUser/{username}")
-	public String delete(@PathVariable String username) {
-		userService.deleteUser(username);
-		return "{\"message\":\"Uspješno obrisan korisnik\"}";
+	@RequestMapping(method= RequestMethod.DELETE, value="/deleteUser/{id}")
+	public String delete(@PathVariable String id) {
+		return userService.deleteUser(id);
 	}
 }
 

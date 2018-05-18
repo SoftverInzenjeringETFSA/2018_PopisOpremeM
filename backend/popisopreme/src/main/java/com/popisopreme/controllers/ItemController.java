@@ -28,7 +28,6 @@ public class ItemController {
 
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
     	public String create(@RequestBody Item item) {
-		
 		return itemService.createItem(item);
     }
 	
@@ -45,7 +44,5 @@ public class ItemController {
 	@RequestMapping(method= RequestMethod.DELETE, value="/write-off/{br}")
 	public String writeoff(@PathVariable String br) {
 		return itemService.writeoff(br);
-	}
-	
+	}	
 }
-

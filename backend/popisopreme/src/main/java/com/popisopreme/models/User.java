@@ -1,11 +1,16 @@
 package com.popisopreme.models;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class User {
 	
     private String firstName;
     private String lastName;
     private String email;
+    @Id
+    private String id;
     private String username;
     private String password;
     private boolean isActive;
@@ -25,6 +30,17 @@ public class User {
     public User() {
     	
     }
+    
+	public User(User u) {
+	    	
+		firstName = u.getFirstName();
+    	lastName = u.getLastName();
+        this.email = u.getEmail();
+        this.username = u.getUsername();
+        this.role = u.getRole();
+        this.setRawPassword(u.getPassword());
+        isActive = u.getIsActive();
+	}
 
     public String getFirstName() {
         return firstName;
@@ -84,5 +100,12 @@ public class User {
     
     public void setRawPassword(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
