@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.popisopreme.models.Item;
 import com.popisopreme.services.ItemService;
 
+import com.popisopreme.repositories.ItemRepository;
+
 @RestController
 public class ItemController {
 	
 	@Autowired
 	private ItemService itemService;
 	
+	
 	@RequestMapping("/items")
 	public List<Item> getAllItems(){
 		return itemService.getAllItems();
+		
 	}
 
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
@@ -30,18 +34,18 @@ public class ItemController {
     }
 	
 	@RequestMapping(method= RequestMethod.PUT, value="/updateItem/{br}")
-	public Item update(@RequestBody Item item,@PathVariable String br) {
+	public String update(@RequestBody Item item,@PathVariable String br) {
 		return itemService.updateItem(item,br);
 	}
 	
 	@RequestMapping(method= RequestMethod.DELETE, value="/deleteItem/{br}")
-	public void delete(@PathVariable String br) {
-		itemService.deleteItem(br);
+	public String delete(@PathVariable String br) {
+		return itemService.deleteItem(br);
 	}
 	
 	@RequestMapping(method= RequestMethod.DELETE, value="/write-off/{br}")
-	public void writeoff(@PathVariable String br) {
-		itemService.writeoff(br);
+	public String writeoff(@PathVariable String br) {
+		return itemService.writeoff(br);
 	}
 	
 }

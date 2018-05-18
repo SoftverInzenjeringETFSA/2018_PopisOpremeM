@@ -1,35 +1,60 @@
 package com.popisopreme.services;
-
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.popisopreme.models.Category;
 import com.popisopreme.models.Item;
 
+import com.popisopreme.repositories.ItemRepository;
+
 @Service
 public class ItemService {
 
-	private List<Item> Items=new ArrayList<>(Arrays.asList(
+	  private List<Item> Items=new ArrayList<>(Arrays.asList(
 		new Item("prva","jedinica mjere",1.22,"opis",1,new Date(11,12,2018),new Category("kategorija","opis"), true, true),
 		new Item("druga","jedinica mjere",1.22,"opis",2,new Date(11,12,2018),new Category("kategorija","opis"), true, true),
 		new Item("treca","jedinica mjere",1.22,"opis",3,new Date(11,12,2018),new Category("kategorija","opis"), true, true)
 			)); 
-				
-	public List<Item> getAllItems(){
-		return Items;
-	}
-			
-	public void deleteItem(String br) {
-		Items.removeIf(t -> t.getBarcode().equals(BigInteger.valueOf(Integer.parseInt(br))));
+	
+	
+	public ItemService(ItemRepository itemRepository) {
+		super();
+		this.itemRepository = itemRepository;
 	}
 
-	public void writeoff(String br) {		
-		Items.removeIf(t -> t.getBarcode().equals(BigInteger.valueOf(Integer.parseInt(br))));
+	private ItemRepository itemRepository;
+				
+	public List<Item> getAllItems(){
+		//return Items;
+		return itemRepository.findAll();
+	}
+			
+	public String deleteItem(String br) {
+		try {
+		itemRepository.deleteById(new BigInteger(br));
+		}
+		catch(Exception e) {
+			return e.getMessage();
+		}
+		return "Delete successful";
+	}
+
+	public String writeoff(String br) {		
+		try {
+			itemRepository.deleteById(new BigInteger(br));
+			}
+			catch(Exception e) {
+				return e.getMessage();
+			}
+			return "Write-off successful";
 	}
 
     public Item createItem(Item item) {
@@ -43,16 +68,17 @@ public class ItemService {
    		return it;
     }
 
-	public Item updateItem(Item item, String br) {
-		BigInteger i=BigInteger.valueOf(Integer.parseInt(br));
-		for(int x=0;x<Items.size();x++) {
-			Item it=Items.get(x);
-			if(it.getBarcode().equals(i)) {
-				Items.set(x,item);
-				break;
-			}
+	public String updateItem(Item item, String br) {
+		try {
+			if(item.getQuantity() < 0) throw new Error("Neispravna količina");
+	    	String s = item.getName().toLowerCase();
+	    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') throw new Error("Neispravan naziv");
+	    	itemRepository.save(item);
 		}
-		return item;
+		catch(Exception e){
+			return e.getMessage();
+		}
+		return "Update successful";
 		
 	}
 	

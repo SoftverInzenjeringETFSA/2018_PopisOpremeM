@@ -3,12 +3,16 @@ package com.popisopreme.models;
 import java.math.BigInteger;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Item {
 	
 	public static BigInteger counter = BigInteger.valueOf(Long.parseLong("100000000000"));
 	
 	private String name;
+	@Id
 	private BigInteger barcode;
     private String unitOfMeasurement;
     private double value;

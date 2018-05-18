@@ -6,6 +6,7 @@ import {
     View,
     TouchableOpacity,
     TextInput,
+    ListView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation'
 import UnosStavke from './UnosStavke';
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         flex:0.7,
         marginTop:10,
         alignItems : 'flex-start',
-        justifyContent:'center'
+        justifyContent:'flex-start'
     },
     ListView:{
         fontSize:16,
