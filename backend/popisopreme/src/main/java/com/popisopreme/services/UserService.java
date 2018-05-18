@@ -57,9 +57,9 @@ public class UserService {
 			}		
 		}*/
     	try {
-	    	if(user.getUsername() > 16 || user.getUsername() < 3 ) throw new Error("Korisnicko ime minimalno 3 karaktera, maksimalno 16");
-	    	if(user.getPassword() < 8) throw new Error("Lozinka ima minimalno 8 znakova");
-	   		userRepository.save(new User(user));
+	    	if(user.getUsername().length() > 16 || user.getUsername().length() < 3 ) throw new Error("Korisnicko ime minimalno 3 karaktera, maksimalno 16");
+	    	if(user.getPassword().length() < 8) throw new Error("Lozinka ima minimalno 8 znakova");
+	   		Users.add(user);
     	}
     	catch(Exception e){
 			return e.getMessage();
