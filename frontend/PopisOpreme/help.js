@@ -13,7 +13,7 @@ export default class Help extends Component {
     
     
     render() {
-        const {goBack} = this.props.navigation;
+       
         return (
             <View style={styles.container}>
                  <View style={styles.header}>
@@ -113,9 +113,11 @@ const styles = StyleSheet.create({
         fontSize:18
     },
     Text:{
-        fontSize:15
+        fontSize:15,
+        marginLeft:5
     },
     link:{
-        color:'#3983f9'
+        color:'#3983f9',
+        marginLeft:5
     }
 });

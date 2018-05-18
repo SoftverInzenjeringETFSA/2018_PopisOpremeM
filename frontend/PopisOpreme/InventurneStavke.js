@@ -11,6 +11,8 @@ import {
 import { StackNavigator } from 'react-navigation'
 import UnosStavke from './UnosStavke';
 import Modifikacija from './Modifikacija';
+import obrisi from './obrisi';
+import otpis from './otpisi';
 
 class InventurneStavke extends Component {
     
@@ -58,15 +60,7 @@ class InventurneStavke extends Component {
                     </View>
 
                     <View style={styles.list}>
-                        <Text style = {styles.ListView}>Ime:</Text>
-
-                        <Text style = {styles.ListView}>Barkod:</Text>
-
-                        <Text style = {styles.ListView}>Kolicina:</Text>
-
-                        <Text style = {styles.ListView}>Datum kupovine:</Text>
-
-                        <Text style = {styles.ListView}>Vrijednost:</Text>
+                       
 
                     </View>
 
@@ -93,7 +87,7 @@ class InventurneStavke extends Component {
 
                     <TouchableOpacity style={styles.button}>
                             
-                            <Text style = {styles.RedButtonText}>
+                            <Text style = {styles.RedButtonText} onPress={() => navigate('Otpis')}>
                                  OTPIŠI
                             </Text>
 
@@ -101,7 +95,7 @@ class InventurneStavke extends Component {
 
                     <TouchableOpacity style={styles.redButton}>
                             
-                            <Text style = {styles.RedButtonText}>
+                            <Text style = {styles.RedButtonText} onPress={() => navigate('Obrisi')}>
                                  OBRIŠI
                             </Text>
 
@@ -216,7 +210,9 @@ const styles = StyleSheet.create({
 var MyScreens=StackNavigator({
     InventurneStavke:{screen: InventurneStavke},
     Modifikacija:{screen: Modifikacija},
-    UnosStavke:{screen: UnosStavke}
+    UnosStavke:{screen: UnosStavke},
+    Obrisi:{screen:obrisi},
+    Otpis:{screen:otpis}
     },
    
     {
