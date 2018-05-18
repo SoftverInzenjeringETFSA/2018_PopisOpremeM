@@ -1,6 +1,9 @@
 package com.popisopreme.models;
 
+import org.springframework.data.annotation.Id;
+
 public class Category {
+	
 	private String name;
     private String description;
     private Category parent;

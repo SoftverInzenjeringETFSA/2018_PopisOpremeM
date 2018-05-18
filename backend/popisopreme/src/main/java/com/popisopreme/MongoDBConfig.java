@@ -32,7 +32,5 @@ public class MongoDBConfig implements CommandLineRunner {
 		this.itemRepository.save(new Item("treca","jedinica mjere",1.22,"opis",3,new Date(11,12,2018),new Category("kategorija","opis"), true, true));
 		
 	}
-	
-	
 
 }
