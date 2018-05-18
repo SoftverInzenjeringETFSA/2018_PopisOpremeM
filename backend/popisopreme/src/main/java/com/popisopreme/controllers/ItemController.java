@@ -29,8 +29,7 @@ public class ItemController {
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
     	public String create(@RequestBody Item item) {
 		
-		itemService.createItem(item);
-		return "{\"message\":\"Uspješno kreirana stavka\"}";
+		return itemService.createItem(item);
     }
 	
 	@RequestMapping(method= RequestMethod.PUT, value="/updateItem/{br}")

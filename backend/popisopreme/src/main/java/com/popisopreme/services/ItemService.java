@@ -57,15 +57,19 @@ public class ItemService {
 			return "Write-off successful";
 	}
 
-    public Item createItem(Item item) {
+    public String createItem(Item item) {
     	
-    	if(item.getQuantity() < 0) throw new Error("Neispravna količina");
-    	String s = item.getName().toLowerCase();
-    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') throw new Error("Neispravan naziv");
-    	
-   		Item it = new Item(item);
-   		Items.add(it);
-   		return it;
+    	try {
+	    	if(item.getQuantity() < 0) throw new Error("Neispravna količina");
+	    	String s = item.getName().toLowerCase();
+	    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') throw new Error("Neispravan naziv");
+	    	
+	   		itemRepository.save(new Item(item));
+    	}
+    	catch(Exception e){
+			return e.getMessage();
+		}
+    	return "{\"message\":\"Uspješno kreirana stavka\"}";
     }
 
 	public String updateItem(Item item, String br) {
