@@ -23,13 +23,13 @@ public class CategoryController {
 	}
 
 	@RequestMapping(method= RequestMethod.POST, value="/createCategory")
-    	public Category create(@RequestBody Category cat) {
+    	public String create(@RequestBody Category cat) {
     		return categoryService.createCategory(cat);
     	}
 
-	@RequestMapping(method= RequestMethod.DELETE, value="/deleteCategory/{name}")
-	public void delete(@PathVariable String name) {
-		categoryService.deleteCategory(name);
+	@RequestMapping(method= RequestMethod.DELETE, value="/deleteCategory/{d}")
+	public String delete(@PathVariable String id) {
+		return categoryService.deleteCategory(id);
 	}
 	
 }
