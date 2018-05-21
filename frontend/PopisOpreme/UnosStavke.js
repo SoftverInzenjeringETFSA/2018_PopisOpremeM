@@ -64,7 +64,7 @@ export default class UnosStavke extends Component {
                 })
             })
                 .then(res =>res.text())
-                .then(res=>alert(res))
+                .then(res=>Alert.alert("Message",res))
                 .catch((error) => {
 
                     Alert.alert("Error", error.message);
