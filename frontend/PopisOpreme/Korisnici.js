@@ -67,14 +67,6 @@ export default class Korisnici extends Component {
                     </View>
 
                     <View style={styles.list}>
-                        <Text style = {styles.ListView}>Ime:</Text>
-
-                        <Text style = {styles.ListView}>Prezime:</Text>
-
-                        <Text style = {styles.ListView}>Username:</Text>
-
-                        <Text style = {styles.ListView}>Email:</Text>
-                        
                     </View>
 
                     <View style={styles.controls}>

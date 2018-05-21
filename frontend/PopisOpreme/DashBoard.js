@@ -48,8 +48,8 @@ class DashBoard extends Component {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style = {styles.buttonText} onPress={() => navigate('Korisnici')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('Korisnici')}>
+                    <Text style = {styles.buttonText}>
                         KORISNICI
                     </Text>
                 </TouchableOpacity>

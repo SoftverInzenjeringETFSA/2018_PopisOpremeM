@@ -75,6 +75,19 @@ export default class UnosStavke extends Component {
         }
     }
 
+    componentWillMount() {
+
+        fetch('http://192.168.0.16:8080/categories', {method: 'GET'})
+            .then((res) => res.json())
+            .then((data) => {
+                this.setState({kategorije: data});
+            })
+            .catch((error) => {
+
+                Alert.alert("Error", error.message);
+            });
+    }
+
     checkQuantityInput = (text) => {
         let newText = '';
         let numbers = '0123456789.';
@@ -180,8 +193,8 @@ export default class UnosStavke extends Component {
                             }}
                             selectedValue = {this.state.category}
                             onValueChange = {(itemValue, itemIndex) => this.setState({category: itemValue})}>
-                            {this.state.kategorije.map((item, index) => {
-                                return (<Picker.Item label={item} value={index} key={index}/>)
+                            {this.state.kategorije.map((item, i) => {
+                                return (<Picker.Item label={item.name} value={item.name} key={item.id}/>)
                             })}
                         </Picker>
                     </View>
