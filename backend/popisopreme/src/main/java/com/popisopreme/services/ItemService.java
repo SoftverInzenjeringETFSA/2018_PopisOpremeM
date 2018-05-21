@@ -2,10 +2,10 @@ package com.popisopreme.services;
 import java.math.BigInteger;
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
 
 import com.popisopreme.models.Item;
-
 import com.popisopreme.repositories.ItemRepository;
 
 @Service
@@ -14,8 +14,9 @@ public class ItemService {
 	public ItemService(ItemRepository itemRepository) {
 		super();
 		this.itemRepository = itemRepository;
+	
 	}
-
+	
 	private ItemRepository itemRepository;
 				
 	public List<Item> getAllItems(){
@@ -50,7 +51,8 @@ public class ItemService {
 	    	String s = item.getName().toLowerCase();
 	    	for(int i=0; i<s.length(); i++) if(s.charAt(i) < 'a' || s.charAt(i) > 'z') throw new Error("Neispravan naziv");
 	    	
-	   		itemRepository.save(new Item(item));
+	    	
+	    	itemRepository.save(new Item(item));
     	}
     	catch(Exception e){
 			return e.getMessage();

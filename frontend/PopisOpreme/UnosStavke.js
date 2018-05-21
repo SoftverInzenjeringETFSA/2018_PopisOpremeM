@@ -24,7 +24,8 @@ export default class UnosStavke extends Component {
             name: '',
             description: '',
             unitOfMeasurement: 'kg',
-            category: 'Category 1',
+            category: '',
+            categoryId: '',
             kategorije: [],
             response: '',
             isPresent: true,
@@ -51,9 +52,8 @@ export default class UnosStavke extends Component {
                     name: this.state.name,
                     description: this.state.description,
                     category: {
-                        name: this.state.category,
-                        description: 'opis',
-                        parent: null
+                        id: this.state.categoryId,
+                        name: this.state.category
                     },
                     quantity: parseFloat(this.state.quantity),
                     value:  parseFloat(this.state.value),
@@ -80,7 +80,7 @@ export default class UnosStavke extends Component {
         fetch('http://192.168.0.16:8080/categories', {method: 'GET'})
             .then((res) => res.json())
             .then((data) => {
-                this.setState({kategorije: data});
+                this.setState({kategorije: data, category: data[0].name, categoryId: data[0].id});
             })
             .catch((error) => {
 
@@ -192,9 +192,9 @@ export default class UnosStavke extends Component {
                                 color: '#111'
                             }}
                             selectedValue = {this.state.category}
-                            onValueChange = {(itemValue, itemIndex) => this.setState({category: itemValue})}>
+                            onValueChange = {(itemValue, itemIndex) => this.setState({category: itemValue, categoryId: itemValue})}>
                             {this.state.kategorije.map((item, i) => {
-                                return (<Picker.Item label={item.name} value={item.name} key={item.id}/>)
+                                return (<Picker.Item label={item.name} value={item.id} key={i}/>)
                             })}
                         </Picker>
                     </View>

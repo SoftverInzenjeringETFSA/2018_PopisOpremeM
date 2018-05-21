@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @Document
 public class Item {
@@ -19,6 +20,8 @@ public class Item {
     private String description;
     private double quantity;
     private Date dateOfPurchase;
+    
+    @DBRef
     private Category category;
     private boolean isPresent;
     private boolean isCorrect;
