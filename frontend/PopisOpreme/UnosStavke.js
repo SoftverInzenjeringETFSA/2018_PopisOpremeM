@@ -11,7 +11,6 @@ import {
     TouchableOpacity
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import { Button } from 'react-native-elements';
 
 export default class UnosStavke extends Component {
 

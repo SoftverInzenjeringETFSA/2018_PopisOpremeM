@@ -28,7 +28,7 @@ export default class Help extends Component {
 
                 </View>
 
-                <ScrollView style={{padding: 5, marginBottom: 20}}>
+                <ScrollView style={{margin: 20}}>
 
                     <Text style={styles.naslov}>1. Opis projekta</Text>
                     <Text style={styles.Text}>
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-   
     header:{
         flex:0.1,
         backgroundColor: '#2d63b7' ,

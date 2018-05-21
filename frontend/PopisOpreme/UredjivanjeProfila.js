@@ -7,13 +7,17 @@ import {
     TextInput,
     Picker,
     ScrollView,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native';
 import { Button } from 'react-native-elements';
 
 export default class UredjivanjeProfila extends Component {
 
     render() {
+
+        const {goBack} = this.props.navigation;
+
         return (
             <ScrollView style = {styles.container}>
 
@@ -35,13 +39,13 @@ export default class UredjivanjeProfila extends Component {
                     <TextInput secureTextEntry={true} placeholder={"Nova šifra"} style = {{fontSize:15, height: 40}}/>
                     <TextInput secureTextEntry={true} placeholder={"Potvrdi šifru"} style = {{fontSize:15, height: 40}}/>
 
-                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginTop: 50}}
-                            buttonStyle = {{backgroundColor: '#4587f9', height: 40}}
-                            title = {'Sačuvaj'}/>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.btnText}>Sačuvaj</Text>
+                    </TouchableOpacity>
 
-                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginBottom: 25, marginTop: 10}}
-                            buttonStyle = {{backgroundColor: '#dd1c20', height: 40}}
-                            title = {'Odustani'}/>
+                    <TouchableOpacity style={styles.redButton} onPress={() => goBack()}>
+                        <Text style={styles.btnText}>Odustani</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         );
@@ -53,6 +57,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    btnText:{
+        fontSize:15,
+        fontWeight:'bold',
+        color:'white'
+    },
+    button:{
+        backgroundColor:'#4587f9',
+        width: '100%',
+        height:40,
+        alignItems : 'center',
+        justifyContent:'center',
+        marginTop:30
+    },
+    redButton:{
+        backgroundColor:'#dd1c20',
+        width: '100%',
+        height:40,
+        alignItems : 'center',
+        justifyContent:'center',
+        marginTop:10,
+        marginBottom: 30
     },
     title1:{
         color:'white',
