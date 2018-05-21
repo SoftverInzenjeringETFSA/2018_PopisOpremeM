@@ -7,7 +7,8 @@ import {
     TextInput,
     Picker,
     ScrollView,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { Button } from 'react-native-elements';
@@ -18,7 +19,7 @@ export default class UnosStavke extends Component {
         super(props);
 
         this.state = {
-            dateOfPurchase: new Date().getDate() + "-" + parseInt(new Date().getMonth() + 1) + "-" + new Date().getFullYear(),
+            dateOfPurchase: new Date(),
             quantity: '',
             value: '',
             name: '',
@@ -31,7 +32,7 @@ export default class UnosStavke extends Component {
         }
     }
 
-    sendData = async () => {
+    sendData = () => {
 
         try {
             if (this.state.name === ''
@@ -40,7 +41,7 @@ export default class UnosStavke extends Component {
                 || this.state.value === ''
                 || this.state.quantity === '') throw new Error("Popunite polja");
 
-            return fetch('http://localhost:8080/createItem', {
+            fetch('http://192.168.0.16:8080/createItem', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -62,11 +63,8 @@ export default class UnosStavke extends Component {
                     isCorrect: this.state.isCorrect
                 })
             })
-                .then((response) => {
-
-                    this.setState({response: response.json()});
-                    Alert.alert("Message", this.state.response);
-                })
+                .then(res =>res.text())
+                .then(res=>alert(res))
                 .catch((error) => {
 
                     Alert.alert("Error", error.message);
@@ -128,6 +126,9 @@ export default class UnosStavke extends Component {
     }
 
     render() {
+
+        const {goBack} = this.props.navigation;
+
         return (
             <ScrollView style = {styles.container}>
 
@@ -211,8 +212,8 @@ export default class UnosStavke extends Component {
                             date = {this.state.dateOfPurchase}
                             mode = "date"
                             placeholder = "Select date"
-                            format = "DD-MM-YYYY"
-                            minDate = "01-01-2015"
+                            format = "YYYY-MM-DD"
+                            minDate = "2015-01-01"
 
                             customStyles = {{
                                 dateIcon: {
@@ -272,14 +273,15 @@ export default class UnosStavke extends Component {
 
                         </Picker>
                     </View>
-                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginTop: 50}}
-                            buttonStyle = {{backgroundColor: '#4587f9', height: 40}}
-                            title = {'Kreiraj'}
-                            onPress = {this.sendData.bind(this)}
-                    />
-                    <Button containerViewStyle = {{width: '100%', marginLeft: 0, marginBottom: 50, marginTop: 10}}
-                            buttonStyle = {{backgroundColor: '#dd1c20', height: 40}}
-                            title = {'Odustani'}/>
+
+                    <TouchableOpacity style={styles.button} onPress = {this.sendData}>
+                        <Text style={styles.btnText}>Kreiraj</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.redButton} onPress={() => goBack()}>
+                        <Text style={styles.btnText}>Odustani</Text>
+                    </TouchableOpacity>
+
                 </View>
             </ScrollView>
         );
@@ -296,6 +298,23 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 10
+    },
+    button:{
+        backgroundColor:'#4587f9',
+        width: '100%',
+        height:40,
+        alignItems : 'center',
+        justifyContent:'center',
+        marginTop:30
+    },
+    redButton:{
+        backgroundColor:'#dd1c20',
+        width: '100%',
+        height:40,
+        alignItems : 'center',
+        justifyContent:'center',
+        marginTop:10,
+        marginBottom: 30
     },
     header:{
         height: '7%',
@@ -315,6 +334,11 @@ const styles = StyleSheet.create({
         marginTop: 25,
         textAlign: 'left',
         justifyContent: 'center'
+    },
+    btnText:{
+        fontSize:15,
+        fontWeight:'bold',
+        color:'white'
     },
     main: {
         flex: 1,

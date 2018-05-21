@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.popisopreme.models.Item;
+import java.util.Date;
 import com.popisopreme.services.ItemService;
 
 import com.popisopreme.repositories.ItemRepository;
@@ -28,6 +29,9 @@ public class ItemController {
 
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
     	public String create(@RequestBody Item item) {
+		
+		//String[] parts = item.getDateOfPurchase().toString().split("-");
+		//item.setDateOfPurchase(new Date(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]),Integer.parseInt(parts[2])));
 		return itemService.createItem(item);
     }
 	

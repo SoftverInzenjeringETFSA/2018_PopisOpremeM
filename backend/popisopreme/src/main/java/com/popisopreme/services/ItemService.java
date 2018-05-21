@@ -55,7 +55,7 @@ public class ItemService {
     	catch(Exception e){
 			return e.getMessage();
 		}
-    	return "{\"message\":\"Uspješno kreirana stavka\"}";
+    	return "Uspješno kreirana stavka";
     }
 
 	public String updateItem(Item item, String br) {
