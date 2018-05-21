@@ -26,6 +26,7 @@ export default class UnosStavke extends Component {
             description: '',
             unitOfMeasurement: 'kg',
             category: 'Category 1',
+            kategorije: [],
             response: '',
             isPresent: true,
             isCorrect: true
@@ -180,11 +181,9 @@ export default class UnosStavke extends Component {
                             }}
                             selectedValue = {this.state.category}
                             onValueChange = {(itemValue, itemIndex) => this.setState({category: itemValue})}>
-                            <Picker.Item label = "Category 1" value = "1"/>
-                            <Picker.Item label = "Category 2" value = "2"/>
-                            <Picker.Item label = "Category 3" value = "3"/>
-                            <Picker.Item label = "Category 4" value = "4"/>
-                            <Picker.Item label = "Category 5" value = "5"/>
+                            {this.state.kategorije.map((item, index) => {
+                                return (<Picker.Item label={item} value={index} key={index}/>)
+                            })}
                         </Picker>
                     </View>
                     <View style = {styles.row}>

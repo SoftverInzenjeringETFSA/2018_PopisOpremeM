@@ -21,8 +21,6 @@ export default class Modifikacija extends Component {
         prisutna:true
     }
 
-    
-    
     render() {
         const {goBack} = this.props.navigation;
         return (

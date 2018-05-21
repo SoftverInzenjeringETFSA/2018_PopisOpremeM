@@ -1,17 +1,17 @@
 package com.popisopreme.services;
 
-import java.math.BigInteger;
 import java.util.List;
-
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Update.update;
-import static org.springframework.data.mongodb.core.query.Query.query;
+import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.popisopreme.models.User;
 import com.popisopreme.repositories.UserRepository;
+
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Service
 public class UserService {
@@ -32,7 +32,7 @@ public class UserService {
     	
     	try {
     		
-    		//if (userRepository.findById(user.getUsername()) != null) throw new Error("Korisnicko ime je vec u upotrebi");
+    		if(checkIfUsernameExists(user.getUsername())) throw new Error("Korisnicko ime je vec u upotrebi");
 	    	if(user.getUsername().length() > 16 || user.getUsername().length() < 3 ) throw new Error("Korisnicko ime minimalno 3 karaktera, maksimalno 16");
 	    	if(user.getPassword().length() < 8) throw new Error("Lozinka ima minimalno 8 znakova");
 	   		userRepository.save(new User(user));
@@ -56,27 +56,36 @@ public class UserService {
 
     public boolean checkIfUsernameExists(String username) {
     	
-    	//if (userRepository.findOne(query(where("username").is(username))) == null) return false;
+    	if (userRepository.findByUsername(username) == null) return false;
+    	
 		return true;
     }
 
 	public String updateUser(User user, String id) {
 		
 		try {
-		if (userRepository.findById(id) == null) throw new Error("Korisnik ne postoji");
+			
+		Optional<User> found = userRepository.findById(id);
+		
+		if (found == null) throw new Error("Korisnik ne postoji");
+		
+		User toUpdate = found.get();
 		
 		if(user.getPassword() != "") {
 			
-			if(user.getPassword().length() < 8) throw new Error("Sifra mora sadrzavati minimalno 8 karaktera");
-			user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+			if(user.getPassword().length() < 8) throw new Error("Šifra mora sadrzavati minimalno 8 karaktera");
+			
+			toUpdate.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 		}
-		
 		if(user.getUsername() != "") {
 			
 			if(user.getUsername().length() <3 || user.getUsername().length() >16) throw new Error("Korisnicko ime mora sadrzavati 3 do 16 karaktera");
-			//if(checkIfUsernameExists(user.getUsername()) && user.getUsername() != uname) throw new Error("Korisnicko ime je vec u upotrebi");
+			
+			if(checkIfUsernameExists(user.getUsername())) throw new Error("Korisnicko ime je vec u upotrebi");
+			
+			toUpdate.setUsername(user.getUsername());
 		}
-		userRepository.save(user);
+		userRepository.save(toUpdate);
 		}
 		catch(Exception e) {
 			return e.getMessage();

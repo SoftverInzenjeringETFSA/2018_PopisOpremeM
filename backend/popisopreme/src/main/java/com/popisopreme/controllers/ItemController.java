@@ -30,8 +30,6 @@ public class ItemController {
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")
     	public String create(@RequestBody Item item) {
 		
-		//String[] parts = item.getDateOfPurchase().toString().split("-");
-		//item.setDateOfPurchase(new Date(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]),Integer.parseInt(parts[2])));
 		return itemService.createItem(item);
     }
 	

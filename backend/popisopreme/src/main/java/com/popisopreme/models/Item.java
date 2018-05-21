@@ -93,6 +93,7 @@ public class Item {
 	public void setUnitOfMeasurement(String unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
 	}
+	
 	public Category getCategory(){
 		return category;
 	}

@@ -34,6 +34,7 @@ public class MongoDBConfig implements CommandLineRunner {
 		
 		this.itemRepository.deleteAll();
 		this.userRepository.deleteAll();
+		//new Category("kategorija 1","opis");
 		this.itemRepository.save(new Item("prva","jedinica mjere",1.22,"opis",1,new Date(11,12,2018),new Category("kategorija","opis"), true, true));
 		this.userRepository.save(new User("ime1","prezime","email","username1","password1",true,new Role("admin")));
 	}
