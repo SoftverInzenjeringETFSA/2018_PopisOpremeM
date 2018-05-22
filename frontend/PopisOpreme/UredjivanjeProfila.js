@@ -32,10 +32,12 @@ export default class UredjivanjeProfila extends Component {
             if ((this.state.username === '' && this.state.username1 !== '' )) throw new Error("Niste unijeli staro korisničko ime");
             if ((this.state.username2 === '' && this.state.username1 !== '' )) throw new Error("Niste potvrdili novo korisničko ime");
             if ((this.state.username1 === '' && this.state.username2 !== '' )) throw new Error("Niste unijeli novo korisničko ime");
+			if ((this.state.username !== '' && (this.state.username1 === '' || this.state.username2 === ''))) throw new Error("Niste unijeli novo korisničko ime");
 
             if ((this.state.password === '' && this.state.password1 !== '' )) throw new Error("Niste unijeli staru šifru");
             if ((this.state.password2 === '' && this.state.password1 !== '' )) throw new Error("Niste potvrdili novu šifru");
             if ((this.state.password1 === '' && this.state.password2 !== '' )) throw new Error("Niste unijeli novu šifru");
+			if ((this.state.password !== '' && (this.state.password1 === '' || this.state.password2 === ''))) throw new Error("Niste unijeli novu šifru");
 
             if ((this.state.username1 !== this.state.username2)) throw new Error("Korisnička imena se ne poklapaju");
             if ((this.state.password1 !== this.state.password2)) throw new Error("Šifre se ne poklapaju");
