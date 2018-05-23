@@ -6,17 +6,22 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator } from 'react-navigation';
 import UnosStavke from './UnosStavke';
 import Modifikacija from './Modifikacija';
 import InventurneStavke from'./InventurneStavke';
 import UredjivanjeProfila from './UredjivanjeProfila';
 import Registracija from './Registracija';
 import Korisnici from './Korisnici';
-import Help from './help'
+import Help from './help';
+import Login from './login';
 
 
 class DashBoard extends Component {
+
+    state = {
+        isLoggedIn: false
+    }
 
    
     render() {
@@ -94,16 +99,26 @@ class DashBoard extends Component {
                 </TouchableOpacity>
                 </View>
 
-
-                <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.redButton}>
-                    <Text style = {styles.RedButtonText}>
+                
+               {this.state.isLoggedIn && 
+               <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button}>
+                    <Text style = {styles.buttonText}>
                         ODJAVI SE
                     </Text>
                 </TouchableOpacity>
-                </View>
+                </View>}
 
-                </View>
+                {this.state.isLoggedIn == false && 
+               <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => navigate('Login')}>
+                    <Text style = {styles.buttonText}>
+                        PRIJAVI SE
+                    </Text>
+                </TouchableOpacity>
+                </View>}
+
+                </View> 
                
             </View>
         );
@@ -183,7 +198,8 @@ InventurneStavke:{screen: InventurneStavke},
 UredjivanjeProfila: {screen: UredjivanjeProfila},
 Registracija: {screen: Registracija},
 Korisnici: {screen: Korisnici},
-Help:{screen:Help}
+Help:{screen:Help},
+Login:{screen:Login}
 },
 {
     headerMode: 'none',

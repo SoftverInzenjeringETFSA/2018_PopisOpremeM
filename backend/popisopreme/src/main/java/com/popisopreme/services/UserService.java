@@ -93,4 +93,10 @@ public class UserService {
 		return "{\"message\":\"Uspješno izmijenjen korisnik\"}";
 	}
 	
+	public User login(String username, String password) {
+		if (userRepository.findByUsername(username) != null) 
+			return userRepository.findByUsername(username);
+		return new User();
+	}
+	
 }

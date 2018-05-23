@@ -36,5 +36,10 @@ public class UserController {
 	public String delete(@PathVariable String id) {
 		return userService.deleteUser(id);
 	}
+	
+	@RequestMapping(method= RequestMethod.POST, value="/login")
+	public User login(@PathVariable String username, @PathVariable String password) {
+		return userService.login(username, password);
+	}
 }
 
