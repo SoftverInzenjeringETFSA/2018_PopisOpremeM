@@ -1,6 +1,7 @@
 package com.popisopreme.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.popisopreme.models.Item;
+import com.popisopreme.models.IzvjestajOtpis;
+
+import java.math.BigInteger;
 import java.util.Date;
 import com.popisopreme.services.ItemService;
 
@@ -25,6 +29,17 @@ public class ItemController {
 	public List<Item> getAllItems(){
 		return itemService.getAllItems();
 		
+	}
+	
+	@RequestMapping("/otpis")
+	public List<IzvjestajOtpis> Otpis(){
+		return itemService.izvjestajOtpis();
+	}
+	
+	
+	@RequestMapping("/getItem/{id}")
+	public Optional<Item>getItemByID(@PathVariable BigInteger id){
+		return itemService.getItemById(id);
 	}
 
 	@RequestMapping(method= RequestMethod.POST, value="/createItem")

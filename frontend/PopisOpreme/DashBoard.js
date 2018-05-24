@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import UnosStavke from './UnosStavke';
@@ -14,20 +15,19 @@ import UredjivanjeProfila from './UredjivanjeProfila';
 import Registracija from './Registracija';
 import Korisnici from './Korisnici';
 import Help from './help';
-import Login from './login';
 
 
 class DashBoard extends Component {
 
     state = {
-        isLoggedIn: false
+        isLoggedIn: true
     }
 
    
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 <View style={styles.header}>
 
@@ -102,8 +102,8 @@ class DashBoard extends Component {
                 
                {this.state.isLoggedIn && 
                <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style = {styles.buttonText}>
+                <TouchableOpacity style={styles.redButton}>
+                    <Text style = {styles.RedButtonText}>
                         ODJAVI SE
                     </Text>
                 </TouchableOpacity>
@@ -120,7 +120,7 @@ class DashBoard extends Component {
 
                 </View> 
                
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -198,8 +198,7 @@ InventurneStavke:{screen: InventurneStavke},
 UredjivanjeProfila: {screen: UredjivanjeProfila},
 Registracija: {screen: Registracija},
 Korisnici: {screen: Korisnici},
-Help:{screen:Help},
-Login:{screen:Login}
+Help:{screen:Help}
 },
 {
     headerMode: 'none',
