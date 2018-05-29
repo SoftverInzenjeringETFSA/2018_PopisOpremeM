@@ -7,6 +7,14 @@ import {
 } from 'react-native';
 
 export default class Obrisi extends Component{
+
+    constructor(props){
+        super(props);
+
+        this.state={
+            id:this.props.navigation.state.params.id
+        };
+    }    
     
     render() {
         const {goBack} = this.props.navigation;
@@ -39,7 +47,10 @@ export default class Obrisi extends Component{
 
                 <View style={styles.rowbutton}>
 
-                    <TouchableOpacity style={styles.button} onPress={()=>fetch("http://192.168.169.2:8080/deleteItem/100000000003",{method:'delete'}).then(res =>res.text()).then(res=>alert(res))}>
+                    <TouchableOpacity style={styles.button} onPress={()=>fetch("http://192.168.169.2:8080/deleteItem/"+this.state.id,{method:'delete'}).then(res =>res.text()).then(res=>{
+                        alert(res);
+                        goBack();
+                        })}>
                     
                        
             

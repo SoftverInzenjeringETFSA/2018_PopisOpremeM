@@ -13,13 +13,99 @@ import {
 
 export default class Modifikacija extends Component {
     
-    state={
-        name:'',
-        kategorija:'',
-        kategorije:["kategorija1","kategorija2","kategorija3"],
-        ispravna:true,
-        prisutna:true
+    constructor(props){
+        super(props);
+
+        this.state={
+            name:this.props.navigation.state.params.name,
+            barcode:this.props.navigation.state.params.barcode,
+            unitOfMesurment:this.props.navigation.state.params.unitOfMesurment,
+            value:this.props.navigation.state.params.value,
+            description:this.props.navigation.state.params.description,
+            quantity:this.props.navigation.state.params.quantity,
+            dateOfPurchase:this.props.navigation.state.params.dateOfPurchase,
+            cid:this.props.navigation.state.params.cid,
+            cname:this.props.navigation.state.params.cname,
+            cdescription:this.props.navigation.state.params.cdescription,
+            parent:this.props.navigation.state.params.parent,
+            isPresent:this.props.navigation.state.params.isPresent,
+            isCorrect:this.props.navigation.state.params.isCorrect
+        };
     }
+    
+    checkNameInput = (text) => {
+        let newText = '';
+        let numbers = '0123456789';
+
+        for (var i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) === -1) {
+                newText = newText + text[i];
+            }
+        }
+        this.setState({name: newText})
+    }
+
+    checkValueInput = (text) => {
+        let newText = '';
+        let numbers = '0123456789.';
+        let dot = 0;
+
+        for (var i = 0; i < text.length; i++) {
+
+            if (i === 0 && text[i] === '.') continue;
+            if (dot === 1 && text[i] === '.') continue;
+
+            if (numbers.indexOf(text[i]) > -1) {
+
+                if (text[i] === '.') dot = 1;
+                newText = newText + text[i];
+            }
+        }
+        this.setState({value: newText})
+    }
+
+    save = () => {
+        const {goBack} = this.props.navigation;
+            if (this.state.name === ''
+                || this.state.unitOfMeasurement === ''
+                || this.state.category === ''
+                || this.state.value === ''
+                || this.state.quantity === ''){
+                    alert("Polja ne mogu biti prazna")
+                }
+
+            fetch('http://192.168.169.2:8080/updateItem/'+this.state.barcode, {
+                method: 'put',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    barcode:this.state.barcode,
+                    unitOfMeasurement: this.state.unitOfMeasurement,
+                    value:  parseFloat(this.state.value),
+                    description: this.state.description,
+                    quantity: parseFloat(this.state.quantity),
+                    dateOfPurchase: this.state.dateOfPurchase,
+                    category: {
+                        id: this.state.cid,
+                        name: this.state.cname,
+                        description:this.state.cdescription,
+                        parent: null
+                    },
+                    isPresent: this.state.isPresent,
+                    isCorrect: this.state.isCorrect
+                })
+            })
+                .then(res =>res.text())
+                .then(res=>alert(res))
+                .then(goBack());
+        
+        
+        
+    }
+
 
     render() {
         const {goBack} = this.props.navigation;
@@ -42,29 +128,24 @@ export default class Modifikacija extends Component {
 
                 <View style={styles.row}>
 
-                    <TextInput style={styles.rowtext} placeholder='Naziv'/>
+                <Text style={styles.rowtext1}>Naziv:</Text>
+                    <TextInput style={styles.rowtext2} defaultValue= {this.state.name}  onChangeText = {this.checkNameInput}/>
        
                  </View>
 
                  <View style={styles.row}>
 
                     <Text style={styles.rowtext1}>Količina:</Text>
-                    <TextInput style={styles.rowtext2}/>
+                    <TextInput style={styles.rowtext2} defaultValue= {String(this.state.quantity)} onChangeText = {this.checkValueInput}/>
        
                  </View>
 
                  <View style={styles.row}>
 
-                    <Text style={styles.rowtext1}>Kategorija:</Text>
+                    <Text style={styles.rowtext1}>Opis:</Text>
+                    <TextInput style={styles.rowtext2}defaultValue= {this.state.description} multiline = {true} onChangeText = {text => this.setState({description:text})}/>
 
-                    <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={(itemValue, itemIndex) => this.setState({kategorija: itemValue})}>
-                        {this.state.kategorije.map((item, index) => {
-                        return (<Picker.Item label={item} value={index} key={index}/>) 
-                    })}
-                    </Picker>
-       
+        
                  </View>
 
                  <View style={styles.row}>
@@ -72,8 +153,8 @@ export default class Modifikacija extends Component {
                  <Text style={styles.rowtext1}>Ispravna:</Text>
 
                     <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
-                        selectedValue={this.state.ispravna}
-                        onValueChange={(itemValue, itemIndex) => this.setState({ispravna: itemValue})}>
+                        selectedValue={this.state.isCorrect}
+                        onValueChange={(itemValue, itemIndex) => this.setState({isCorrect: itemValue})}>
                         <Picker.Item label="True" value={true} />
                         <Picker.Item label="False" value={false} />
                     
@@ -86,8 +167,8 @@ export default class Modifikacija extends Component {
                     <Text style={styles.rowtext1}>Prisutna:</Text>
 
                     <Picker style={[styles.rowtext2, {backgroundColor: '#cdd2d6'}]} mode="dropdown"
-                        selectedValue={this.state.prisutna}
-                        onValueChange={(itemValue, itemIndex) => this.setState({prisutna: itemValue})}>
+                        selectedValue={this.state.isPresent}
+                        onValueChange={(itemValue, itemIndex) => this.setState({isPresent: itemValue})}>
                         <Picker.Item label="True" value={true} />
                         <Picker.Item label="False" value={false} />
                     
@@ -99,7 +180,7 @@ export default class Modifikacija extends Component {
 
                     <TouchableOpacity style={styles.button}>
                                 
-                                <Text style = {styles.RedButtonText}>
+                                <Text style = {styles.RedButtonText} onPress={this.save}>
                                     SAČUVAJ
                                 </Text>
 

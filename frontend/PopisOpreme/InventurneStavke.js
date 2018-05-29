@@ -15,13 +15,61 @@ import obrisi from './obrisi';
 import otpis from './otpisi';
 
 class InventurneStavke extends Component {
-    
-    state={
-        name:'',
-        id:'',
-        kolicina:'',
-        date:'',
-        value:''
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+           name:'',
+           barcode:'',
+           unitOfMesurment:'',
+           value:'',
+           description:'',
+           quantity:'',
+           dateOfPurchase:'',
+           cid:'',
+           cname:'',
+           cdescription:'',
+           parent:'',
+           isPresent:'',
+           isCorrect:''
+        }
+    }
+
+    azuriraj= () => {
+        fetch("http://192.168.169.2:8080/getItem/"+this.state.kod,{method:'get'}).then(res =>res.json()).then(res =>{
+            if(res == null || res.status==400){
+                this.setState({
+                    barcode:'',
+                    name:'',
+                    description:'',
+                    isPresent:'',
+                    isCorrect:'',
+                    value:''
+            });
+                alert("Ne postoji stavka sa datim barkodom");
+            }
+            else{
+                this.setState({name: res.name, 
+                    barcode:res.barcode,
+                    unitOfMesurment:res.unitOfMesurment,
+                    value:res.value,
+                    description:res.description,
+                    quantity:res.quantity,
+                    dateOfPurchase:res.dateOfPurchase,
+                    cid:res.category.id,
+                    cname:res.category.name,
+                    cdescription:res.category.description,
+                    parent:res.category.parent,
+                    isPresent:res.isPresent,
+                    isCorrect:res.isCorrect
+                });
+                
+                
+                
+               
+            }
+        } );
     }
     
     render() {
@@ -45,12 +93,12 @@ class InventurneStavke extends Component {
 
                     <View style={styles.search}>
 
-                        <TextInput style={styles.searchtext} placeholder='Pretraga po barkodu'/>
+                        <TextInput style={styles.searchtext} keyboardType='numeric' placeholder='Pretraga po barkodu'  onChange={(event) => this.setState({kod: event.nativeEvent.text})}/>
 
                        
                         <TouchableOpacity style={styles.SearchButton}>
                             
-                            <Text style = {styles.buttonText}>
+                            <Text style = {styles.buttonText} onPress={this.azuriraj}>
                                  PRETRAŽI
                             </Text>
 
@@ -60,7 +108,15 @@ class InventurneStavke extends Component {
                     </View>
 
                     <View style={styles.list}>
-                       
+                       <Text style={styles.ListView}>Ime stavke: {this.state.name}</Text>
+                       <Text style={styles.ListView}>Barkod: {this.state.barcode}</Text>
+                       <Text style={styles.ListView}>Opis: {this.state.description}</Text>
+                       <Text style={styles.ListView}>Vrijednost: {this.state.value} KM</Text>
+                       <Text style={styles.ListView}>Prisutna: {String(this.state.isPresent)}</Text>
+                       <Text style={styles.ListView}>Ispravna: {String(this.state.isCorrect)}</Text>
+
+
+
 
                     </View>
 
@@ -77,7 +133,28 @@ class InventurneStavke extends Component {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => navigate('Modifikacija')}>
+                    <TouchableOpacity style={styles.button} onPress={() =>{
+                         if(this.state.barcode!=''){
+                            navigate('Modifikacija',{
+                                name: this.state.name, 
+                                barcode:this.state.barcode,
+                                unitOfMesurment:this.state.unitOfMesurment,
+                                value:this.state.value,
+                                description:this.state.description,
+                                quantity:this.state.quantity,
+                                dateOfPurchase:this.state.dateOfPurchase,
+                                cid:this.state.cid,
+                                cname:this.state.cname,
+                                cdescription:this.state.cdescription,
+                                parent:this.state.parent,
+                                isPresent:this.state.isPresent,
+                                isCorrect:this.state.isCorrect
+                            });
+                            }
+                            else{
+                                alert("Prvo izaberite stavku");
+                            }
+                    }}>
                             
                             <Text style = {styles.RedButtonText}>
                                  UREDI
@@ -87,7 +164,15 @@ class InventurneStavke extends Component {
 
                     <TouchableOpacity style={styles.button}>
                             
-                            <Text style = {styles.RedButtonText} onPress={() => navigate('Otpis',{id:'100001'})}>
+                            <Text style = {styles.RedButtonText} onPress={() => {
+                                if(this.state.barcode!=''){
+                                navigate('Otpis',{id:this.state.barcode});
+                                }
+                                else{
+                                    alert("Prvo izaberite stavku");
+                                }
+                                }
+                            }>
                                  OTPIŠI
                             </Text>
 
@@ -95,7 +180,14 @@ class InventurneStavke extends Component {
 
                     <TouchableOpacity style={styles.redButton}>
                             
-                            <Text style = {styles.RedButtonText} onPress={() => navigate('Obrisi')}>
+                            <Text style = {styles.RedButtonText} onPress={() =>{
+                                if(this.state.barcode!=''){
+                                    navigate('Obrisi',{id:this.state.barcode});
+                                    }
+                                    else{
+                                        alert("Prvo izaberite stavku");
+                                    }
+                            }}>
                                  OBRIŠI
                             </Text>
 
@@ -131,9 +223,8 @@ const styles = StyleSheet.create({
     },
     ListView:{
         fontSize:16,
-        margin:5,
-        marginLeft:25,
-        fontWeight:'bold',
+        margin:10,
+        fontWeight:'bold'
     },
     searchtext:{
         flex:0.55,

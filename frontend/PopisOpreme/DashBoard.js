@@ -15,6 +15,7 @@ import UredjivanjeProfila from './UredjivanjeProfila';
 import Registracija from './Registracija';
 import Korisnici from './Korisnici';
 import Help from './help';
+import Izvjestaji from './izvjestaji';
 
 
 class DashBoard extends Component {
@@ -85,7 +86,7 @@ class DashBoard extends Component {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}onPress={() => navigate('Zaoptis')}>
                     <Text style = {styles.buttonText}>
                         IZVJEŠTAJI
                     </Text>
@@ -198,7 +199,8 @@ InventurneStavke:{screen: InventurneStavke},
 UredjivanjeProfila: {screen: UredjivanjeProfila},
 Registracija: {screen: Registracija},
 Korisnici: {screen: Korisnici},
-Help:{screen:Help}
+Help:{screen:Help},
+Zaoptis:{screen:Izvjestaji}
 },
 {
     headerMode: 'none',
